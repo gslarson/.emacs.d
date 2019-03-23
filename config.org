@@ -42,4 +42,5 @@ Add the following snippet to init to el:
 (setq ring-bell-function 'ignore)
 (setq scroll-conservatively 100)
 (when window-system (global-hl-line-mode t))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 #+END_SRC
