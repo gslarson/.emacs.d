@@ -1,0 +1,45 @@
+* Emacs Configuration
+
+After years of using vanilla emacs in order to avoid asynchronous
+configuation management accross the many platforms on which emacs is
+used. I find myself taking advantage of *org-mode babel*,
+*use-package*, and *github* in order to use a more civil config while
+having access to the same config from any box that has internet
+access.
+
+** Boilerplate Init Dot El
+
+Add the following snippet to init to el:
+
+#+BEGIN_SRC 
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+#+END_SRC
+
+** Config Dot Org
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t)
+(use-package ido
+  :ensure t
+  :config
+  (setq ido-enable-flex-matching t)
+;;  (ido-everywhere t)
+  (ido-mode 1))
+(use-package which-key
+  :ensure t
+  :init (which-key-mode))
+(use-package beacon
+  :ensure t
+  :init (beacon-mode))
+(setq ring-bell-function 'ignore)
+(setq scroll-conservatively 100)
+(when window-system (global-hl-line-mode t))
+#+END_SRC
