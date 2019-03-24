@@ -31,7 +31,7 @@ Add the following snippet to init to el:
   :ensure t
   :config
   (setq ido-enable-flex-matching t)
-;;  (ido-everywhere t)
+  (ido-everywhere t)
   (ido-mode 1))
 (use-package which-key
   :ensure t
@@ -41,9 +41,12 @@ Add the following snippet to init to el:
   :init (beacon-mode))
 (use-package avy
   :ensure t
-  :bind ("M-s" . avy-goto-char))
+  :bind ("M-s" . avy-goto-char-timer))
 (setq ring-bell-function 'ignore)
 (setq scroll-conservatively 100)
 (when window-system (global-hl-line-mode t))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq electric-pair-pairs '((?\( . ?\)) (?\{ . ?\})
+  (?\[ . ?\]) (?\" . ?\") (?\' . ?\')))
+(electric-pair-mode t)
 #+END_SRC
