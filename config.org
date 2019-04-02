@@ -25,6 +25,9 @@ Add the following snippet to init to el:
 ** Config Dot Org
 
 #+BEGIN_SRC emacs-lisp
+(defun eval-last-sexp-to-kill-ring ()
+  (interactive)
+  (kill-new (with-output-to-string (princ (call-interactively 'eval-last-sexp)))))
 (use-package magit
   :ensure t)
 (use-package ido
